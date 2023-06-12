@@ -63,6 +63,8 @@ pub mod electromagnetic;
 pub mod geometry;
 pub mod mechanical;
 pub mod nuclear;
+pub mod hft;
+#[macro_use] pub mod hft_macros;
 
 #[cfg(test)]
 #[macro_use]
