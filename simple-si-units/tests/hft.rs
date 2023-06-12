@@ -1,5 +1,5 @@
 use num_traits::CheckedMul;
-use simple_si_units::hft::*;
+use simple_si_units::hft_units::*;
 
 #[test]
 fn size_andPrice() {
@@ -54,9 +54,13 @@ fn sol_trace() {
     // quote_native(USDC) = 1971e2 * 1l2 = 1971e4
     // quote_ui = 19.71
 
-    let sol_decimals = 1_000_000_000;
-    let sol_lot_size = 10_000_000;
-    let sol_base_lots = 100;
+    let sol_native = 1_000_000_000; // =e9  smallest unit
+    let sol_lot_size = 10_000_000; // =l7, number of native units in a lot
+    let sol_qty_lots = 100; // qty of lots to trade
+
+    let sol_base_ui = sol_qty_lots * sol_lot_size / sol_native;
+
+    assert_eq!(sol_base_ui, 1);
 
 
 }
