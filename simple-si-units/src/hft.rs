@@ -1,9 +1,15 @@
 //! This module provides geometry SI units, such as angle
 //! and inverse of volume.
 use core::fmt;
-use crate::{mul_div_unit};
+use crate::{commutative_mul, mul_unit};
 use super::UnitStruct;
 use super::NumLike;
+
+use core::ops::Add;
+use core::ops::Sub;
+use core::ops::Mul;
+use core::ops::Div;
+use core::cmp::PartialEq;
 
 /// TODO
 #[derive(PartialEq, Debug, Clone, Copy)]
@@ -50,6 +56,7 @@ impl Size {
 
     pub fn unit_symbol() -> &'static str { "size" }
 
+    // TODO find better name
     pub fn from(amount: u64) -> Self {
         Size {
             amount: amount,
@@ -88,30 +95,40 @@ impl fmt::Display for Notional {
 }
 
 
-// impl core::ops::Mul<Size> for Price {
-//     type Output = Notional;
-//     fn mul(self, rhs: Size) -> Self::Output {
-//         Notional{value: self.value * rhs.amount}
-//     }
-// }
-//
+impl core::ops::Mul<Size> for Price {
+    type Output = Notional;
+    fn mul(self, rhs: Size) -> Self::Output {
+        Notional{value: self.value * rhs.amount}
+    }
+}
+
+commutative_mul!( Size, Price, Notional);
 // impl core::ops::Mul<Price> for Size {
 //     type Output = Notional;
 //     fn mul(self, rhs: Price) -> Self::Output {
-//         Notional{value: self.amount * rhs.value}
+//         rhs.mul(self)
 //     }
 // }
 
-use core::ops::Add;
-use core::ops::Sub;
-use core::ops::Mul;
-use core::ops::Div;
-use core::cmp::PartialEq;
 
-fn my_mult(lhs: Price, rhs: Size) -> Notional {
+
+fn my_mul(lhs: Price, rhs: Size) -> Notional {
     Notional {
         value: lhs.value * rhs.amount,
     }
 }
-mul_div_unit!(Price, Size, Notional, my_mult);
+
+fn my_div_by2(lhs: Notional, rhs: Size) -> Price {
+    Price {
+        value: lhs.value / rhs.amount,
+    }
+}
+
+fn my_div_by1(lhs: Notional, rhs: Price) -> Size {
+    Size {
+        amount: lhs.value / rhs.value,
+    }
+}
+
+// mul_unit!(Price, Size, Notional, my_mul, my_div_by2, my_div_by1);
 // implement deref
