@@ -18,27 +18,28 @@ use core::cmp::PartialEq;
 /// TODO
 #[derive(PartialEq, Debug, Clone, Copy)]
 // #[cfg_attr(feature="serde", derive(Serialize, Deserialize))]
-pub struct Size {
+pub struct NativeSize {
     /// TODO
     pub amount: u64
 }
 
-impl Size {
 
-    pub fn unit_name() -> &'static str { "size" }
+impl NativeSize {
 
-    pub fn unit_symbol() -> &'static str { "size" }
+    pub fn unit_name() -> &'static str { "native size" }
+
+    pub fn unit_symbol() -> &'static str { "nsz" }
 
     // TODO find better name
     pub fn from(amount: u64) -> Self {
-        Size {
+        NativeSize {
             amount: amount,
         }
     }
 
 }
 
-impl fmt::Display for Size {
+impl fmt::Display for NativeSize {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{} {}", &self.amount, Self::unit_symbol())
     }
