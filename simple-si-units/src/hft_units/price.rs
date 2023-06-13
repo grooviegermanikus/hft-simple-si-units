@@ -5,7 +5,7 @@ use core::ops::Sub;
 use core::ops::Mul;
 use core::ops::Div;
 use core::cmp::PartialEq;
-use crate::hft_units::{Notional, Size};
+use crate::hft_units::{Notional, NativeSize};
 
 
 /// TODO
@@ -20,9 +20,10 @@ pub struct Price {
 
 impl Price {
 
+    pub fn unit_symbol() -> &'static str { "pc" }
+
     pub fn unit_name() -> &'static str { "price units" }
 
-    pub fn unit_symbol() -> &'static str { "price units" }
 
     pub fn from(value: u64) -> Self {
         Price {
@@ -38,9 +39,9 @@ impl fmt::Display for Price {
     }
 }
 
-impl core::ops::Mul<Size> for Price {
+impl core::ops::Mul<NativeSize> for Price {
         type Output = Notional;
-        fn mul(self, rhs: Size) -> Self::Output {
+        fn mul(self, rhs: NativeSize) -> Self::Output {
             Notional{value: self.value * rhs.amount}
         }
 }

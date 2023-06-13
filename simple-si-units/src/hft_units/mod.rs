@@ -1,9 +1,14 @@
-mod price;
-mod size;
-mod notional;
+#[macro_use]
+mod hft_macros;
 
-#[macro_use] pub mod hft_macros;
+mod price;
+mod native_size;
+mod notional;
+mod lots;
+mod derived;
 
 pub use price::*;
-pub use size::*;
+pub use native_size::*;
 pub use notional::*;
+pub use lots::*;
+pub use derived::*;

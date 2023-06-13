@@ -14,7 +14,7 @@ use core::ops::Div;
 use core::cmp::PartialEq;
 
 use super::price::Price;
-use super::size::Size;
+use super::native_size::NativeSize;
 
 
 /// TODO
@@ -28,9 +28,9 @@ pub struct Notional {
 // Price * Size -> Notional
 impl Notional {
 
-    pub fn unit_name() -> &'static str { "notional" }
-
     pub fn unit_symbol() -> &'static str { "notional" }
+
+    pub fn unit_name() -> &'static str { "notional value" }
 
 }
 
@@ -40,4 +40,4 @@ impl fmt::Display for Notional {
     }
 }
 
-commutative_mul!( Size, Price, Notional);
+commutative_mul!( NativeSize, Price, Notional);
