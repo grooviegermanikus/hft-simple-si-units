@@ -2,18 +2,18 @@ use num_traits::CheckedMul;
 use simple_si_units::hft_units::*;
 
 #[test]
-fn size_andPrice() {
+fn size_and_price() {
     let size = NativeSize::from(50);
     let price = Price::from(1400);
 
     let notional: Notional = price * size;
+    let _notional = price * size;
 
     println!("notional = {}", notional);
 
     // TODO
     // let _notional_deref = &price * &size;
-
-
+    // must fail
     // let _zzz = size * size;
 
 
