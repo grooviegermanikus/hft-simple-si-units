@@ -1,5 +1,5 @@
+use hft_simple_units::hft_units::*;
 use num_traits::CheckedMul;
-use simple_si_units::hft_units::*;
 
 #[test]
 fn size_and_price() {

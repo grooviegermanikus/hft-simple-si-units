@@ -1,7 +1,0 @@
-/target
-/Cargo.lock
-/tests/expand/*.expanded.rs
-
-# IDE files
-/.idea/*
-/*.iml

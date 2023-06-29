@@ -1,11 +1,9 @@
-use core::fmt;
+#[warn(unused_imports)]
 
-use core::ops::Add;
-use core::ops::Sub;
-use core::ops::Mul;
-use core::ops::Div;
+use core::fmt;
+use core::ops::*;
 use core::cmp::PartialEq;
-use crate::hft_units::{Notional, NativeSize};
+use crate::hft_units::*;
 
 
 /// TODO
